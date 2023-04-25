@@ -5,6 +5,7 @@ import com.demo.interceptor.TestInterceptor;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.web.method.HandlerTypePredicate;
 import org.springframework.web.servlet.config.annotation.*;
 
 /**
@@ -36,4 +37,10 @@ public class WebAppConfig implements WebMvcConfigurer {
                 .allowedMethods("*")
                 .allowCredentials(true);
     }
+
+//    @Override
+//    public void configurePathMatch(PathMatchConfigurer configurer) {
+//        // 添加统一前缀
+//        configurer.addPathPrefix("/api", HandlerTypePredicate.forBasePackage("com.demo.controller"));
+//    }
 }
