@@ -10,14 +10,9 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-/**
- * TODO
- *
- * @author gnl
- * @since 2023/4/20
- */
-public class EmbedTomcatMain {
-    public EmbedTomcatMain() throws LifecycleException {
+public class MVCMain {
+
+    public MVCMain() throws LifecycleException {
 
         Tomcat tomcat = new Tomcat();
         tomcat.setPort(8080);
@@ -31,6 +26,9 @@ public class EmbedTomcatMain {
         Wrapper servlet = tomcat.addServlet(context, "dispatcherServlet", dispatcherServlet);
         servlet.setLoadOnStartup(1);
         servlet.addMapping("/*");
+
+        // Servlet 容器开启异步请求支持
+        servlet.setAsyncSupported(true);
 
         tomcat.start();
     }
@@ -46,6 +44,6 @@ public class EmbedTomcatMain {
     }
 
     public static void main(String[] args) throws LifecycleException {
-        new EmbedTomcatMain();
+        new MVCMain();
     }
 }
