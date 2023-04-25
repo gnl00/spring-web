@@ -3,11 +3,7 @@
 const strFetch = () => {
 	console.log(123)
 
-  fetch("http://localhost:8080/test/str", {
-		headers: {
-			'Content-Type': 'application/json'
-    }
-  })
+  fetch("http://localhost:8080/test/cors")
     .then(res => {
 	    console.log(res)
     })
@@ -35,7 +31,7 @@ const mapFetch = () => {
 <template>
   <h1>TestComp</h1>
   <div>
-    <button @click="strFetch">strClick</button>
+    <button @click="strFetch">testCors</button>
     <button @click="mapFetch">mapClick</button>
   </div>
 </template>

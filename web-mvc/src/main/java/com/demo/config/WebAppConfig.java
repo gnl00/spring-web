@@ -1,15 +1,11 @@
 package com.demo.config;
 
-import com.demo.converter.TimeConverter;
+import com.demo.converter.CustomConverter;
 import com.demo.interceptor.TestInterceptor;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import java.util.List;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.web.servlet.config.annotation.*;
 
 /**
  * TODO
@@ -23,12 +19,21 @@ import java.util.List;
 public class WebAppConfig implements WebMvcConfigurer {
 
     @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(new CustomConverter());
+    }
+
+    @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new TestInterceptor());
     }
 
     @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        // converters.add(new TimeConverter());
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/test/**")
+                .allowedOrigins("http://localhost:5173")
+                .allowedHeaders("*")
+                .allowedMethods("*")
+                .allowCredentials(true);
     }
 }

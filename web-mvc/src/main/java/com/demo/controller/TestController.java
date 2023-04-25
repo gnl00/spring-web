@@ -30,16 +30,27 @@ public class TestController {
         result.put("data", null);
     }
 
-    @CrossOrigin("*")
     @GetMapping("/str")
     public String str() {
         return "Hello World";
     }
 
-    @CrossOrigin("*")
     @GetMapping("/map")
     public Map<String, Object> map() {
         result.put("data", "[TestController]map()");
+        return result;
+    }
+
+    @GetMapping("/convert")
+    public String testConvertor(String source) {
+        log.info("converted source => {}", source);
+        return "testConvertor";
+    }
+
+    @CrossOrigin("http://localhost:5173")
+    @GetMapping("/cors")
+    public Map<String, Object> testCors() {
+        result.put("data", "[TestController] testCors()");
         return result;
     }
 
