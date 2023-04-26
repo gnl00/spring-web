@@ -11,6 +11,8 @@
 
     <modules>
         <module>web-mvc</module>
+        <module>web-mvc-notomcat</module>
+        <module>web-flux</module>
     </modules>
 
     <properties>
@@ -55,5 +57,12 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+    </dependencies>
 
 </project>
